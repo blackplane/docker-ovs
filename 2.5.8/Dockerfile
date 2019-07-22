@@ -1,5 +1,5 @@
 FROM socketplane/busybox:latest
-MAINTAINER The SocketPlane Team <support@socketplane.io>
+MAINTAINER blackplane
 ENV OVS_VERSION 2.5.8
 ENV SUPERVISOR_STDOUT_VERSION 0.1.1
 # Configure supervisord
