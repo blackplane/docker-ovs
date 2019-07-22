@@ -1,3 +1,5 @@
+Edited by *blackplane*
+
 docker-ovs
 ==========
 
@@ -11,11 +13,11 @@ The containers live in DockerHub so they can be easily used as follows:
 
 Or:
 
-    docker pull socketplane/openvswitch:2.3.1
+    docker pull socketplane/openvswitch:2.5.8
 
 Or even:
 
-    docker run -itd socketplane/openvswitch:2.3.1
+    docker run -itd socketplane/openvswitch:2.5.8
 
 ## Running the container
 
@@ -35,7 +37,7 @@ While it's recommended to load the kernel module outside of the container, it is
     docker exec $cid supervisorctl restart ovs-vswitchd
 
 > Note 1: You need the "tun" kernel module loaded to run in userspace mode
-> Note 2: Change the tag for a specific OVS version e.g socketplane/openvswitch:2.3.0
+> Note 2: Change the tag for a specific OVS version e.g socketplane/openvswitch:2.5.8
 
 ## Controlling The Processes 
 
@@ -60,26 +62,8 @@ The processes can be controlled using  `supervisorctl`
 
 The follwing releases are supported:
 
-- 1.4.6
-- 1.5.0
-- 1.6.1
-- 1.7.0
-- 1.7.1
-- 1.7.2
-- 1.7.3
-- 1.9.0
-- 1.9.3
-- 1.10.0
-- 1.10.2
-- 1.11.0
-- 2.0
-- 2.0.1
-- 2.1.0
-- 2.1.1
-- 2.1.2
-- 2.1.3
-- 2.3
-- 2.3.1
+- 2.4.0
+- 2.5.8
 
 ### Creating bridges in Userspace Mode
 
@@ -113,7 +97,7 @@ Example using `ovs-vsctl` and `vtep-ctl`:
 
 To build a container
 
-    docker build -t socketplane/openvswitch:2.3 2.3
+    docker build -t socketplane/openvswitch:2.5.8 2.5.8
 
 Or to build all containers:
 
@@ -133,6 +117,8 @@ The only files that require edits directly are:
 - `supervisord.conf`
 
 ### Adding a new version
+
+*Note*: New verisons need to provide a tar.gz from the `make install`_ed_ output of the respective OVS source code, e.g., `./configure --prefix=$PWD/openvswitch-2.5.8/usr/local`. This tarball then gets consumed by the docker build process.
 
 Add the new version to `Makefile` and run `make reconfigure`:
 
